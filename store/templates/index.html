@@ -1,11 +1,66 @@
-<!doctype html>
+{% extends 'base.html'%}
 
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Djecommerce</title>
-</head>
-<body>
-    <h1>Index.html</h1>
-</body>
-</html>
+{% block content %}
+
+    <!--body starts -->
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <!-- filter -->
+        <div class="col-lg-2 mx-auto">
+          <!-- List group of category id-->
+
+          <div class="list-group">
+            <p>Categories</p>
+            <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">All PC</a>
+            {% for category in categories %}
+            <a href="/?category={{category.id}}" class="list-group-item list-group-item-action list-group-item-secondary">{{category.name}}</a>
+            {% endfor %}
+          </div>
+
+          <!--list grout of procssors-->
+
+          <div class="list-group">
+            <br>
+            <p>Processors</p>
+            <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">All Processor</a>
+            {% for processor in processors %}
+            <a href="/?processor={{processor.id}}" class="list-group-item list-group-item-action list-group-item-secondary">{{processor.name}}</a>
+            {% endfor %}
+          </div>
+
+          <!--list group of gpu-->
+
+          <div class="list-group">
+            <br>
+            <p>Graphics Card</p>
+            <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">All Graphics Card</a>
+            {% for gpu in gpus %}
+            <a href="/?gpu={{gpu.id}}" class="list-group-item list-group-item-action list-group-item-secondary">{{gpu.name}}</a>
+            {% endfor %}
+          </div>
+          
+        </div>
+
+        <!--All Products-->
+        <div id="products" class="col-lg-10 mx-auto">
+          <div class="row mx-auto">
+
+            {% for product in products%}
+            <div class="card mx-auto mb-3" style="width: 18rem;">
+                <div class="bg-image hover-zoom">
+                  <img src="{{product.image.url}}" class="card-img-top w-100" height="200">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">{{product.name}}</p>
+                    <p class="card-text">{{product.price}}</p>
+                    <a href="#" class="btn btn-secondary  border btn-sm">Add to Cart</a>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--body ends-->
+
+{% endblock %}

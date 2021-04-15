@@ -5,3 +5,7 @@ class Category(models.Model):
     #this function returns the name table elements in str format
     def __str__(self):
         return self.name
+    
+    @staticmethod
+    def get_all_categories():
+        return Category.objects.all()
