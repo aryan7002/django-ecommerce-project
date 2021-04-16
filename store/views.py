@@ -4,6 +4,7 @@ from .models.product import Product
 from .models.category import Category
 from .models.processor import Processor
 from .models.gpu import GPU
+from .models.costumer import Costumer
 # Create your views here.
 
 # Index page
@@ -37,5 +38,21 @@ def index(request):
 
 #SignUp Page
 def signup(request):
-    return render(request,'signup.html')
+    if request.method == 'GET':
+        return render(request,'signup.html')
+    else:
+        postData = request.POST
+        first_name = postData.get('firstname')
+        last_name =postData.get('lastname')
+        phone = postData.get('phone')
+        email = postData.get('email')
+        password = postData.get('password')
+        costumer = Costumer(firstname = first_name,
+                            lastname = last_name,
+                            phone = phone,
+                            email = email,
+                            password = password)
+        costumer.register()
+        print(first_name,last_name,phone,email,password)
+        return HttpResponse("Signup Sucess")
 
