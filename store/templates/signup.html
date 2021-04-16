@@ -1,5 +1,57 @@
 {%extends 'base.html'%}
 
 {% block content%}
-<h1>Signup Page</h1>
+<div class="container">
+    <div class="p-4 m-4">
+        <div class="col-lg-5 mx-auto">
+            <h3 class="alert alert-light border rounded" style="color: purple; background-color:#D8C2E6;">Create an account</h3>
+            <form action="">
+                <!--First Name-->
+                <div class="form-group">
+                    <label for="" style="color:purple">First Name</label>
+                    <input type="text" name="first name" id="" class="form-control form-control-sm"aria-describedby="helpId" style="border-color: purple; border-width: 2px;">
+                </div>
+
+                <!--Last Name-->
+                <div class="form-group">
+                    <label for="" style="color:purple">Last Name</label>
+                    <input type="text" name="lastname" id="" 
+                    class="form-control form-control-sm"aria-describedby="helpId" 
+                    style="border-color: purple; border-width: 2px;">
+                </div>
+
+                <!--Phone Number-->
+                <div class="form-group">
+                    <label for="" style="color:purple">Phone Number</label>
+                    <input type="text" name="phone" id="" 
+                    class="form-control form-control-sm"aria-describedby="helpId"
+                    placeholder="0123456789"
+                    style="border-color: purple; border-width: 2px;">
+                </div>
+
+                <!--email-->
+                <div class="form-group">
+                    <label for="" style="color:purple">Email</label>
+                    <input type="email" name="email" id="" 
+                    class="form-control form-control-sm"
+                    placeholder="example@email.com" aria-describedby="helpId" style="border-color: purple; border-width: 2px;">
+                </div>
+
+                <!--Password-->
+                <div class="form-group">
+                    <label for="" style="color:pur">Password</label>
+                    <input type="password" name="password" id="" 
+                    class="form-control form-control-sm" placeholder="********"        
+                    aria-describedby="helpId" 
+                    style="border-color: purple; border-width: 2px;">
+                </div>
+
+                <div class="form-group">
+                    <br>
+                    <input type="submit" class="btn btn-secondary btn-sm" value="Create Account">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock%}

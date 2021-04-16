@@ -8,9 +8,9 @@
         <!-- filter -->
         <div class="col-lg-2 mx-auto">
           <!-- List group of category id-->
-
+          <p>Filter by :</p>
           <div class="list-group">
-            <p>Categories</p>
+            <label for="">Category</label>
             <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">All PC</a>
             {% for category in categories %}
             <a href="/?category={{category.id}}" class="list-group-item list-group-item-action list-group-item-secondary">{{category.name}}</a>
@@ -21,7 +21,7 @@
 
           <div class="list-group">
             <br>
-            <p>Processors</p>
+            <label for="">Processor</label>
             <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">All Processor</a>
             {% for processor in processors %}
             <a href="/?processor={{processor.id}}" class="list-group-item list-group-item-action list-group-item-secondary">{{processor.name}}</a>
@@ -32,7 +32,7 @@
 
           <div class="list-group">
             <br>
-            <p>Graphics Card</p>
+            <label for="">Graphics Card</label>
             <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">All Graphics Card</a>
             {% for gpu in gpus %}
             <a href="/?gpu={{gpu.id}}" class="list-group-item list-group-item-action list-group-item-secondary">{{gpu.name}}</a>
