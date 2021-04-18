@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models.product import Product
 from .models.category import Category
@@ -38,6 +38,14 @@ def index(request):
 
 #SignUp Page
 def signup(request):
+
+    error_message = None
+    costumer = Costumer(firstname = first_name,
+                            lastname = last_name,
+                            phone = phone,
+                            email = email,
+                            password = password)
+
     if request.method == 'GET':
         return render(request,'signup.html')
     else:
@@ -47,12 +55,27 @@ def signup(request):
         phone = postData.get('phone')
         email = postData.get('email')
         password = postData.get('password')
-        costumer = Costumer(firstname = first_name,
-                            lastname = last_name,
-                            phone = phone,
-                            email = email,
-                            password = password)
-        costumer.register()
-        print(first_name,last_name,phone,email,password)
-        return HttpResponse("Signup Sucess")
+        
+        value = {
+            'first_name':first_name,
+            'last_name':last_name,
+            'phone':phone,
+            'email':email
+        }
+        isExist = costumer.isExists()
+        if isExist:
+            error_message = "Email Already Registered "
+        if not error_messgae:
+            
+            
+        
+            costumer.register()
+            print(first_name,last_name,phone,email,password)
+            return  redirect('homepage')
+        else:
+            data ={
+                'error':error_message,
+                'values':value
+            }
+            return render(request,'signup.html',data)
 

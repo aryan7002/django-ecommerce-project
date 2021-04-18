@@ -9,3 +9,9 @@ class Costumer(models.Model):
 
     def register(self):
         self.save()
+
+    def isExists(self):
+        if Costumer.objects.filter(email=self.email):
+            return True
+        
+        return False
