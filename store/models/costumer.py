@@ -15,3 +15,10 @@ class Costumer(models.Model):
             return True
         
         return False
+
+    @staticmethod
+    def get_costumer_by_email(email):
+        try:
+            return Costumer.objects.get(email = email)
+        except:
+            return False

@@ -6,6 +6,7 @@ from .models.category import Category
 from .models.processor import Processor
 from .models.gpu import GPU
 from .models.costumer import Costumer
+from django.views import View
 # Create your views here.
 
 # Index page
@@ -80,8 +81,26 @@ def signup(request):
             }
             return render(request,'signup.html',data)
 
-
-#Login Page 
-def login(request):
-    if request.method == 'GET':
+class Login(View):
+    def get(self, request):
         return render(request,'login.html')
+    def post(self , request):
+
+        error_message = None
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        costumer =Costumer.get_costumer_by_email(email)
+        if costumer:
+            if password == costumer.password:
+                return redirect('homepage')
+            else:
+                error_message = "Email or password Invalid"
+
+        else:
+            error_message = 'Email or Password Invalid '
+
+        print(email,password)
+        return render(request,'login.html',{'error':error_message})
+
+        
+
