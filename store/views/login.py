@@ -7,6 +7,7 @@ from store.models.processor import Processor
 from store.models.gpu import GPU
 from store.models.costumer import Costumer
 from django.views import View
+
 class Login(View):
     def get(self, request):
         return render(request,'login.html')

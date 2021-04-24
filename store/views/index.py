@@ -10,55 +10,46 @@ from django.views import View
 
 
 # Create your views here.
-
-# Index page
-def index(request):
-    products = None
-    categories = Category.get_all_categories()
-    processors = Processor.get_all_processors()
-    gpus = GPU.get_all_gpus()
-
-    gpusID = request.GET.get('gpu')
-    processorsID = request.GET.get('processor')
-    categoryID = request.GET.get('category')
-
-    if categoryID:
-        products = Product.get_all_products_by_id(categoryID)
-    elif processorsID:
-        products = Product.get_all_products_by_processorID(processorsID)
-    elif gpusID:
-        products = Product.get_all_products_by_gpuID(gpusID)
-    else:
-        products = Product.get_all_products();
-
-    data = {}
-    data['products'] = products
-    data['categories'] = categories
-    data['processors'] = processors
-    data['gpus'] = gpus
-    return render(request, 'index.html', data)
-
-
-class Login(View):
-    def get(self, request):
-        return render(request, 'login.html')
-
+class Index(View):
     def post(self, request):
-
-        error_message = None
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        costumer = Costumer.get_costumer_by_email(email)
-        if costumer:
-            if password == costumer.password:
-                return redirect('homepage')
+        product = request.POST.get('product')
+        cart = request.session.get('cart')
+        if cart:
+            quantity = cart.get(product)
+            if quantity:
+                cart[product] = quantity + 1
             else:
-                error_message = "Email or password Invalid"
+                cart[product] = 1
 
         else:
-            error_message = 'Email or Password Invalid '
+            cart = {}
+            cart[product] = 1
+        request.session['cart'] = cart
+        return redirect('homepage')
 
-        print(email, password)
-        return render(request, 'login.html', {'error': error_message})
+    def get(self, request):
+        products = None
+        request.session.get('cart').clear()
+        categories = Category.get_all_categories()
+        processors = Processor.get_all_processors()
+        gpus = GPU.get_all_gpus()
 
+        gpusID = request.GET.get('gpu')
+        processorsID = request.GET.get('processor')
+        categoryID = request.GET.get('category')
 
+        if categoryID:
+            products = Product.get_all_products_by_id(categoryID)
+        elif processorsID:
+            products = Product.get_all_products_by_processorID(processorsID)
+        elif gpusID:
+            products = Product.get_all_products_by_gpuID(gpusID)
+        else:
+            products = Product.get_all_products();
+
+        data = {}
+        data['products'] = products
+        data['categories'] = categories
+        data['processors'] = processors
+        data['gpus'] = gpus
+        return render(request, 'index.html', data)
