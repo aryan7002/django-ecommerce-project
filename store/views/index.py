@@ -29,7 +29,7 @@ class Index(View):
 
     def get(self, request):
         products = None
-        request.session.get('cart').clear()
+        
         categories = Category.get_all_categories()
         processors = Processor.get_all_processors()
         gpus = GPU.get_all_gpus()
