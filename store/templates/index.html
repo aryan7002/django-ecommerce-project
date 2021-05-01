@@ -61,7 +61,7 @@
                   {% if product|is_in_cart:request.session.cart %}
                   <div class="row no-gutters">
                     <input type="submit" value=" - " class="col-2 btn  btn-secondary" >
-                    <div class="text-center col" style="background-color: #D8C2E6;">2 in cart</div>
+                    <div class="text-center col" style="background-color: #D8C2E6;">{{product|cart_quantity:request.session.cart}}in cart</div>
                     <input type="submit" value=" + " class="col-2 btn  btn-secondary">
                   </div>
                   {% else %}
