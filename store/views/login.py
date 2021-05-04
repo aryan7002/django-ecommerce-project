@@ -19,8 +19,8 @@ class Login(View):
         costumer =Costumer.get_costumer_by_email(email)
         if costumer:
             if password == costumer.password:
-                request.session['costumer_id'] = costumer.id
-                request.session['email'] = costumer.email
+                request.session['costumer'] = costumer.id
+                
                 return redirect('homepage')
             else:
                 error_message = "Email or password Invalid"
