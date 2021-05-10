@@ -18,5 +18,5 @@ class Cart(View):
         ids = list(request.session.get('cart').keys())
         products = Product.get_products_by_ids(ids)
         print(products)
-        return render(request,'cart.html')
+        return render(request,'cart.html',{'products':products})
     
