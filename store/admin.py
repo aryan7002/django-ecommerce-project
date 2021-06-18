@@ -8,6 +8,7 @@ from .models.storage import Storage
 from .models.ram import RAM
 from .models.display import Display
 from .models.costumer import Costumer
+from .models.orders import Order
 
 # this class resolves the error of object_product(1) like and you can see proper name 
 # and i have also added price and category will be shown  
@@ -29,6 +30,9 @@ class AdminDisplay(admin.ModelAdmin):
     list_display=['inch']
 class AdminCostumer(admin.ModelAdmin):
     list_display=['firstname','lastname','phone','email','password']
+class AdminOrderz(admin.ModelAdmin):
+    list_display=['product','costumer','quantity','price','address','phone','date']
+
 
 # Register your models here.
 
@@ -41,6 +45,7 @@ admin.site.register(GPU ,AdminGPU)
 admin.site.register(Storage ,AdminStorage)
 admin.site.register(RAM,AdminRAM)
 admin.site.register(Costumer,AdminCostumer)
+admin.site.register(Order ,AdminOrderz)
 
 
 

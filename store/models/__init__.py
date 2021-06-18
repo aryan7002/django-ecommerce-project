@@ -7,3 +7,4 @@ from .storage import Storage
 from .ram import RAM
 from .display import Display
 from .costumer import Costumer
+from .orders import Order
